@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Input Validation</title>
+    </head>
+    <body>
+        <form id="myform">
+            <label for="name">name</label>
+            <input type="text" id="name" >
+            <span id="nameError"style="color:red"></span><br>
+            <label for="email" >email</label>
+            <input type="email"id="email" >
+            <span id="emailError"style="color:red"></span><br>
+            <label for="password">password</label>
+            <input type="password"id="password" >
+            <span id="passwordError"style="color:red"></span><br>
+            <button type="submit">submit</button>
+        </form>
+        <script>
+            let form=document.getElementById("myform");
+            let nameInput=document.getElementById("name");
+            let emailInput=document.getElementById("email");
+            let passwordInput=document.getElementById("password");
+        form.addEventListener("submit", function(event) 
+        {
+            let valid = true;
+            let name = namelnput.value.trim();
+            let nameError = document.getElementById("nameError");
+            if (name=== "")
+             {
+                nameError.innerText = "Name is required";
+                valid = false;
+            }
+             else 
+             {
+                nameError.innerText = "";
+             } 
+             let email = emaillnput.value.trim();
+             let emailError = document.getElementById("emailError");
+             if (!/^\S+@\S+\.\S+$/.test(email)) 
+             {
+                emailError.innerText = "Invalid email address";
+                valid = false;
+            } 
+            else 
+            {
+                emailError.innerText = "";
+            }
+            let password = passwordInput.value.trim();
+            let passwordError = document.getElementById("passwordError");
+            if(password.length < 8) 
+            {
+                passwordError.innerText = "Password must be at least 8 characters";
+                valid = false;
+            } 
+            else 
+            {
+                passwordError.innerText = "";
+            }
+            if(!valid) 
+            {
+                event.preventDefault();
+            }
+        });
+        </script>
+        </body>
+        </html>
